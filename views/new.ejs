@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div class="form-card">
+        <h1>Create New Post</h1>
+
+        <form 
+            method="post" 
+            action="/posts" 
+            class="post-form"
+            enctype="multipart/form-data"
+        >
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter Username"
+                    required
+                >
+            </div>
+
+            <!-- Post Content -->
+            <div class="form-group">
+                <label for="content">Post Content</label>
+                <textarea
+                    name="content"
+                    id="content"
+                    rows="6"
+                    placeholder="Write your post"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- Image -->
+            <div class="form-group">
+                <label for="image">Add Image</label>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                >
+                <!-- Image Preview -->
+                <img
+                    id="image-preview"
+                    src=""
+                    alt="Image Preview"
+                    style="display: none; max-width: 100%; margin-top: 10px;"
+                >
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <a href="/posts" class="btn-secondary">Cancel</a>
+                <button type="submit" class="btn-primary">Submit post</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript for Live Image Preview -->
+    <script>
+        const imageInput = document.getElementById("image");
+        const imagePreview = document.getElementById("image-preview");
+
+        imageInput.addEventListener("change", function () {
+            const file = imageInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    imagePreview.src = event.target.result;
+                    imagePreview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = "";
+                imagePreview.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

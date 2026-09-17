@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post in Detail</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="form-card">
+        <h1>Post in Detail</h1>
+
+        <div class="user-badge">
+            <p><strong>Post ID:</strong> <%= post.id %></p>
+        </div>
+
+        <div class="post" style="box-shadow: none; border-color: #f0f2f5; margin-bottom: 0;">
+            <h3 class="user">@<%= post.username %></h3>
+           <% if (post.image) { %><img src="<%= post.image %>" alt="Post image" class="post-image"><% } %>
+            <h4 class="content"><%= post.content %></h4>
+        </div>
+
+        <div class="form-actions" style="margin-top: 20px;">
+            <a href="/posts" class="btn-secondary">Back to Posts</a>
+            <a href="/posts/<%= post.id %>/edit" class="btn-primary" style="text-decoration: none;">Edit Post</a>
+        </div>
+    </div>
+</body>
+</html>
